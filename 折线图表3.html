@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>折线图表3</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.js"></script>
+</head>
+
+<body>
+    <!-- 为DOM准备一个容器 -->
+    <div id="container" style="width: 1200px;height:550px;"></div>
+    <!-- 基于准备好的DOM，初始化echarts实例 -->
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        var symbolSize = 20;
+        var data = [
+            [3, 19],
+            [6, 19],
+            [9, 18],
+            [12, 18],
+            [15, 18],
+            [18, 18],
+            [21, 17],
+            [24, 16],
+            [30, 19],
+            [33, 21],
+            [36, 21],
+            [39, 23],
+            [42, 23],
+            [45, 24],
+            [48, 24],
+            [51, 25],
+            [54, 25],
+            [57, 25],
+            [60, 25]
+        ];
+        var points = [];
+
+        option = {
+            title: {
+                text: '最近一周空气质量指数与温度系数的关系',
+                textStyle: {
+                    color: '#F4606C',
+                    fontFamily: '幼圆',
+                    fontSize: 20,
+                },
+            },
+            tooltip: {
+                formatter: function(params) {
+                    var data = params.data || [0, 0];
+                    return data[0].toFixed(2) + ', ' + data[1].toFixed(2);
+                }
+            },
+
+            grid: {
+                show: true,
+
+                left: '5%',
+                bottom: '5%',
+                containLabel: true
+            },
+            xAxis: {
+                axisTick: {
+                    alignWithLabel: true,
+                    show: false
+                },
+                // 去掉下面线条
+                axisLabel: {
+                    fontWeight: 700,
+                    fontSize: 17,
+                    fontFamily: 'YouYuan',
+
+                },
+                //调整坐标轴的字体大小
+
+                nameTextStyle: {
+                    color: '#19CAAD ',
+                    fontWeight: 800,
+                    fontSize: 16,
+                },
+                name: '空气质量指数',
+                nameLocation: 'end',
+                min: 3,
+                max: 60,
+                type: 'value',
+                maxInterval: 3,
+                axisLine: {
+                    onZero: false
+                }
+            },
+            yAxis: {
+                axisTick: {
+                    alignWithLabel: true,
+                    show: false
+                },
+                axisLabel: {
+                    fontWeight: 700,
+                    fontSize: 17,
+                    fontFamily: 'YouYuan',
+
+                },
+                //调整坐标轴的字体大小
+
+                nameTextStyle: {
+                    color: '#19CAAD',
+                    fontWeight: 800,
+                    fontSize: 16,
+                },
+                naemGap: 50,
+                name: '温度℃',
+                nameLocation: 'end',
+                min: 0,
+                max: 30,
+                maxInterval: 2,
+                type: 'value',
+                axisLine: {
+                    onZero: false
+                }
+            },
+            series: [{
+                id: 'a',
+                type: 'line',
+                smooth: true,
+                symbolSize: symbolSize,
+                data: data
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>

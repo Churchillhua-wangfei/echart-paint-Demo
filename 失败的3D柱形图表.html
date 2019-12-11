@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>失败的3D柱状图</title>
+    <script src="echarts.js"></script>
+    <script type="text/javascript" src="echarts-gl.js"></script>
+    <script src="vintage.js"></script>
+</head>
+
+<body>
+    <div id="bar" style="width:600px;height: 400px;"></div>
+    <script type="text/javascript">
+        var bar_data = [13.2, 26.28, 60.51]; //模拟数据
+        var chart = echarts.init(document.getElementById('bar'), 'vintage');
+        var option = {
+            title: {
+                x: 'center',
+                y: 'top',
+                textAlign: 'left',
+                text: '实时数据分析',
+                textStyle: {
+                    color: '#D1BA74',
+                    fontFamily: '幼圆',
+                    fontSize: 28,
+                },
+            },
+
+
+
+            tooltip: {
+                formatter: '{a}:{c}%',
+
+            },
+            legend: {
+                orient: 'vertical', // 'horizontal'
+                data: ['5条以上违章', '3-5条违章', '1-2条违章'],
+                textStyle: { // 图列内容样式
+
+                },
+                x: '70%', //图例位置，设置right发现图例和文字位置反了，设置一个数值就好了
+                y: 'center' //延Y轴居中
+            },
+            grid: {
+                left: '3%',
+                right: '30%',
+                top: '3%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [ //纵坐标
+
+
+                {
+                    axisTick: {
+                        alignWithLabel: true,
+                        show: false
+                    },
+                    // 去掉下面线条
+
+                    type: 'value',
+                    axisLabel: {
+                        show: true,
+                        formatter: '{value}%', //给Y轴数值添加百分号
+                        fontWeight: 600,
+                        fontSize: 14,
+                        fontFamily: 'YouYuan',
+                    },
+
+
+                    axisLine: {
+                        lineStyle: {
+
+                        }
+                    }
+                }
+            ],
+            yAxis: [ //横坐标
+                {
+                    type: 'category',
+                    data: ['']
+                }
+            ],
+            color: ['#C10100', '#4F83C0', '#91D34F'], //柱状图的颜色
+            series: [{
+                name: '1-2条违章'
+            }, {
+                name: '3-5条违章'
+            }, {
+                name: '5条以上违章',
+                itemStyle: {
+                    color: '#6A9800'
+                },
+            }]
+        };
+
+        for (var i = 0; i < option.series.length; i++) {
+            var style = { //定义柱状图的样式
+                normal: {
+                    label: {
+                        show: true,
+                        position: 'right', //柱子上方显示 数值
+                        formatter: '{c}%' //数值加上'%'
+                    }
+                }
+            };
+            option.series[i].type = 'bar'; //每条数据指定类型为'bar'
+            option.series[i].itemStyle = style; // series中每条数据都加的样式
+            option.series[i].data = [bar_data[i]]; //series 中 data赋值
+        };
+
+        chart.setOption(option, true);
+    </script>
+</body>
+
+</html>

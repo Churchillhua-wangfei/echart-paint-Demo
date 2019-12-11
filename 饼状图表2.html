@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饼状图表2</title>
+    <script src="echarts.js"></script>
+    <script src="vintage.js"></script>
+</head>
+
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1000px;height:800px;"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'), 'vintage');
+        var option = {
+            title: {
+                x: 'center',
+                y: 'top',
+                textAlign: 'left',
+                text: '实时数据分析',
+                textStyle: {
+                    color: '#D1BA74',
+                    fontFamily: '幼圆',
+                    fontSize: 28,
+                },
+            },
+            legend: {
+                left: 'right'
+            },
+            tooltip: {},
+            grid: {
+
+                left: '6%',
+                bottom: '5%',
+                containLabel: true
+            },
+            series: [{
+                center: ['50%', '30%'],
+                name: '数据',
+                type: 'pie',
+                radius: 160,
+                data: [
+
+                    {
+                        value: 7,
+                        name: 'PM2.5',
+                        itemStyle: {
+                            color: '#BFDD7B'
+
+                        }
+                    }, {
+                        value: 20,
+                        name: '光照',
+                        itemStyle: {
+                            color: '#E3DCA1'
+                        }
+                    }, {
+                        value: 34,
+                        name: '温度',
+                        itemStyle: {
+                            color: '#78EA5A'
+                        }
+                    }, {
+                        value: 23,
+                        name: '湿度',
+                        itemStyle: {
+                            color: '#EE80B6'
+                        }
+                    }, {
+                        value: 3,
+                        name: 'CO2',
+                        itemStyle: {
+                            color: '#FF23B4'
+                        }
+                    },
+                ]
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+</body>
+
+</html>

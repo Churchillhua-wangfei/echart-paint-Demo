@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>柱形图表2</title>
+    <script src="echarts.js"></script>
+</head>
+
+<body>
+    <!-- 为DOM准备一个容器 -->
+    <div id="container" style="width: 1000px;height:550px;"></div>
+    <!-- 基于准备好的DOM，初始化echarts实例 -->
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        var symbolSize = 20;
+        var data = [
+            [3, 4],
+            [6, 19],
+            [9, 18],
+            [12, 18],
+            [15, 18],
+            [18, 18],
+            [21, 17],
+            [24, 16],
+            [27, 19],
+            [30, 19],
+            [33, 21],
+            [36, 21],
+            [39, 23],
+            [42, 23],
+            [45, 24],
+            [48, 24],
+            [51, 25],
+            [54, 25],
+            [57, 25],
+            [60, 28]
+        ];
+        var points = [];
+
+        option = {
+            title: {
+                x: 'center',
+                y: 'top',
+                textAlign: 'left',
+                text: '整点天气实况',
+                textStyle: {
+                    color: '#52C6F7',
+                    fontFamily: '幼圆',
+                    fontSize: 18,
+                },
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                left: 'right',
+                data: ['过去3分钟空气质量指数']
+
+            },
+
+            grid: {
+                left: '5%',
+                bottom: '5%',
+                containLabel: true
+            },
+
+            xAxis: {
+
+                axisLabel: {
+                    fontWeight: 700,
+                    fontSize: 16,
+                    fontFamily: 'YouYuan',
+
+                },
+
+
+                axisTick: {
+                    alignWithLabel: true,
+                    show: false
+                },
+                // 去掉下面线条
+
+                nameTextStyle: {
+                    color: '#EE80B6',
+                    fontWeight: 800,
+                    fontSize: 16,
+                },
+                name: '（S）',
+                nameLocation: 'end',
+                min: 0,
+                max: 63,
+                type: 'value',
+                maxInterval: 3,
+                axisLine: {
+                    onZero: false
+                }
+            },
+            yAxis: {
+
+                axisLabel: {
+                    fontWeight: 700,
+                    fontSize: 16,
+                    fontFamily: 'YouYuan',
+
+                },
+                axisTick: {
+                    alignWithLabel: true,
+                    show: false
+                },
+                // 去掉下面线条
+
+
+
+                nameTextStyle: {
+                    color: '#EE80B6',
+                    fontWeight: 800,
+                    fontSize: 16,
+                },
+                naemGap: 50,
+                name: '空气质量指数',
+                nameLocation: 'end',
+                min: 0,
+                max: 30,
+                maxInterval: 2,
+                type: 'value',
+                axisLine: {
+                    onZero: false
+                }
+            },
+            series: [{
+                name: '过去3分钟空气质量指数',
+                id: 'a',
+                type: 'bar',
+                smooth: true,
+                barWidth: 20,
+                symbolSize: symbolSize,
+                data: data,
+                itemStyle: {
+                    color: '#666666'
+                },
+                markLine: {
+
+
+                    lineStyle: {
+
+                        normal: {
+                            type: 'dashed'
+                        }
+                    },
+                    data: [
+                        [{
+                            type: 'min'
+                        }, {
+                            type: 'max'
+                        }]
+                    ]
+                }
+            }]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>柱状图</title>
+    <script src="echarts.js"></script>
+    <script type="text/javascript" src="echarts-gl.js"></script>
+</head>
+
+<body style="background:#000;">
+    <div id="bar" style="width:500px;height: 250px;"></div>
+    <script type="text/javascript">
+        var bar_data = [12, 23, 34, 43, 33, 23, 11, 22, 6]; //模拟数据
+        var chart = echarts.init(document.getElementById('bar'));
+        var option = {
+            tooltip: {
+                formatter: '{a}:{c}%' //a 是series中每条数据name值，c 是data数值
+            },
+            legend: {
+                orient: 'vertical', // 'horizontal'
+                data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他'],
+                textStyle: { // 图列内容样式
+                    color: '#fff', // 字体颜色
+                },
+                x: '70%', //图例位置，设置right发现图例和文字位置反了，设置一个数值就好了
+                y: 'center' //延Y轴居中
+            },
+            grid: {
+                left: '3%',
+                right: '30%',
+                top: '3%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [ //横坐标
+                {
+                    type: 'category',
+                    data: [''],
+                    axisLine: {
+                        lineStyle: {
+                            color: "#fff", //横坐标线条颜色
+                        }
+                    }
+                }
+            ],
+            yAxis: [ //纵坐标
+                {
+                    type: 'value',
+                    axisLabel: {
+                        show: true,
+                        formatter: '{value}%', //给Y轴数值添加百分号
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: "#fff", //纵坐标线条颜色
+                        }
+                    }
+                }
+            ],
+            color: ['#0287f8', '#269cff', '#58b1fc', '#2fb6f6', '#03cdfa', '#3ed9fc', '#05f6f6', '#47fefe', '#7dfcfc', '#a9ffff'], //柱状图的颜色
+            series: [{
+                name: '直接访问'
+            }, {
+                name: '邮件营销'
+            }, {
+                name: '联盟广告'
+            }, {
+                name: '视频广告'
+            }, {
+                name: '搜索引擎'
+            }, {
+                name: '百度'
+            }, {
+                name: '谷歌'
+            }, {
+                name: '必应'
+            }, {
+                name: '其他'
+            }]
+        };
+
+        for (var i = 0; i < option.series.length; i++) {
+            var style = { //定义柱状图的样式
+                normal: {
+                    label: {
+                        show: true,
+                        position: 'top', //柱子上方显示 数值
+                        formatter: '{c}%' //数值加上'%'
+                    }
+                }
+            };
+            option.series[i].type = 'bar'; //每条数据指定类型为'bar'
+            option.series[i].itemStyle = style; // series中每条数据都加的样式
+            option.series[i].data = [bar_data[i]]; //series 中 data赋值
+        };
+
+        chart.setOption(option);
+    </script>
+</body>
+
+</html>

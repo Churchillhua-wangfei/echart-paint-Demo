@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>饼状图表1</title>
+    <!-- 引入 util.js -->
+    <script src="echarts.js"></script>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var option = {
+            title: {
+                text: '平台上有违章车辆和没违章车辆的占比统计',
+                textStyle: {
+                    color: '#D1BA74',
+                    fontFamily: '幼圆',
+                    fontSize: 20,
+                },
+            },
+            legend: {
+                left: 'right'
+            },
+            tooltip: {
+                formatter: "{a} </br> {b}:  {d}%" //百分号表示法
+            },
+            grid: {
+
+                left: '6%',
+                bottom: '5%',
+                containLabel: true
+            },
+            dataset: {
+                source: [{
+                        value: 28.6,
+                        name: '有违章',
+                        itemStyle: {
+                            color: '#4572A7'
+                        }
+                    }, {
+                        value: 71.3,
+                        name: '无违章',
+                        itemStyle: {
+                            color: '#AA4643'
+                        }
+                    },
+
+                ]
+            },
+            series: [{
+                type: 'pie',
+                name: '数据',
+                radius: 70,
+                center: ['25%', '30%']
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+
+    <!-- 分割线第二个图表--------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+    <div id="main2" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart2 = echarts.init(document.getElementById('main2'));
+
+        var option2 = {
+            title: {
+                text: '有无"重复违章车辆"的占比统计',
+                textStyle: {
+                    color: '#19CAAD',
+                    fontFamily: '幼圆',
+                    fontSize: 20,
+                },
+            },
+            legend: {
+                left: 'right'
+            },
+            tooltip: {
+                formatter: "{a} </br> {b}:  {d}%" //百分号表示法
+            },
+            grid: {
+
+                left: '6%',
+                bottom: '5%',
+                containLabel: true
+            },
+            dataset: {
+                source: [{
+                        value: 86.1,
+                        name: '无重复违章',
+                        itemStyle: {
+                            color: '#4572A7'
+                        }
+                    }, {
+                        value: 13.8,
+                        name: '有重复违章',
+                        itemStyle: {
+                            color: '#AA4643'
+                        }
+                    },
+
+                ]
+            },
+            series: [{
+                type: 'pie',
+                radius: 70,
+                name: '数据',
+                center: ['25%', '30%']
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart2.setOption(option2);
+    </script>
+</body>
+
+</html>
